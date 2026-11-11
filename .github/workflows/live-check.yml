@@ -35,7 +35,7 @@ jobs:
           jq -e '.authorization_endpoint and .token_endpoint and .registration_endpoint' "$RUNNER_TEMP/oauth-authorization-server.json" > /dev/null
 
       - name: Check out server.json and README
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           persist-credentials: false
       - name: Compare with https://skrapp.io/mcp.md
