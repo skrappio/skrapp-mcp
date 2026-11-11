@@ -1,0 +1,4 @@
+# Export SKRAPP_API_KEY in your shell first; Codex reads it at start-up.
+[mcp_servers.skrapp]
+url = "https://mcp.skrapp.io/"
+env_http_headers = { "X-Access-Key" = "SKRAPP_API_KEY" }

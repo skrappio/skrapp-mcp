@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Markdown lint
+        run: npx --yes markdownlint-cli2@0.18.1
+
+      - name: Link check
+        uses: lycheeverse/lychee-action@v2
+        with:
+          lycheeVersion: v0.20.1
+          args: >-
+            --no-progress --max-retries 2 --timeout 20
+            --accept '200..=299,403,429'
+            --exclude '^cursor:' --exclude '^mailto:'
+            --exclude 'localhost' --exclude '127\.0\.0\.1'
+            --exclude '^https://mcp\.skrapp\.io/?$'
+            --exclude '^https://github\.com/skrappio/skrapp-mcp/issues/new'
+            --exclude '^https://insiders\.vscode\.dev/'
+            --exclude '^https://claude\.ai/'
+            --exclude '^https://chatgpt\.com/'
+            '**/*.md'
+          fail: true
+
+      - name: Validate server.json against its schema
+        run: |
+          curl -sSf "$(jq -r '."$schema"' server.json)" -o "$RUNNER_TEMP/server.schema.json"
+          npx --yes -p ajv-cli@5.0.0 -p ajv-formats@3.0.1 ajv validate \
+            --spec=draft7 --strict=false -c ajv-formats -s "$RUNNER_TEMP/server.schema.json" -d server.json
+
+      - name: JSON and TOML syntax
+        run: |
+          shopt -s dotglob
+          for f in server.json examples/*.json examples/apikey/*.json; do jq empty "$f" && echo "ok $f"; done
+          python3 -c 'import sys,tomllib; [tomllib.load(open(f,"rb")) for f in sys.argv[1:]]' \
+            examples/codex.config.toml examples/apikey/codex.config.toml
+          bash -n examples/curl.sh

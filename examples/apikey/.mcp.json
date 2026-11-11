@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "skrapp": {
+      "type": "http",
+      "url": "https://mcp.skrapp.io/",
+      "headers": { "X-Access-Key": "${SKRAPP_API_KEY}" }
+    }
+  }
+}

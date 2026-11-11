@@ -1,0 +1,18 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.skrappio/skrapp-mcp",
+  "title": "Skrapp",
+  "description": "Verified B2B emails, phones, company data and lists from Skrapp, for any MCP client.",
+  "version": "1.4.2",
+  "websiteUrl": "https://skrapp.io/mcp",
+  "repository": {
+    "url": "https://github.com/skrappio/skrapp-mcp",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://mcp.skrapp.io/"
+    }
+  ]
+}

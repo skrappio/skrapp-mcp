@@ -1,0 +1,12 @@
+{
+  "inputs": [
+    { "type": "promptString", "id": "skrapp-key", "description": "Skrapp API key", "password": true }
+  ],
+  "servers": {
+    "skrapp": {
+      "type": "http",
+      "url": "https://mcp.skrapp.io/",
+      "headers": { "X-Access-Key": "${input:skrapp-key}" }
+    }
+  }
+}

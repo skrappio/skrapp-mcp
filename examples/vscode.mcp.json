@@ -1,0 +1,5 @@
+{
+  "servers": {
+    "skrapp": { "type": "http", "url": "https://mcp.skrapp.io/" }
+  }
+}

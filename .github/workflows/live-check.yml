@@ -1,0 +1,35 @@
+name: Live check
+
+on:
+  schedule:
+    - cron: "17 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Anonymous initialize returns 401 with WWW-Authenticate
+        run: |
+          set -euo pipefail
+          out=$(curl -sS -D - -o /dev/null --max-time 20 -X POST https://mcp.skrapp.io/ \
+            -H 'Content-Type: application/json' \
+            -H 'Accept: application/json, text/event-stream' \
+            -d '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"live-check","version":"1"}}}')
+          echo "$out"
+          echo "$out" | head -1 | grep -q ' 401' || { echo "::error::expected HTTP 401"; exit 1; }
+          echo "$out" | grep -qi '^www-authenticate:.*oauth-protected-resource' || { echo "::error::missing WWW-Authenticate pointing at oauth-protected-resource"; exit 1; }
+
+      - name: Well-known documents return 200 JSON
+        run: |
+          set -euo pipefail
+          for p in oauth-protected-resource oauth-authorization-server; do
+            code=$(curl -sS --max-time 20 -o "$RUNNER_TEMP/$p.json" -w '%{http_code}' "https://mcp.skrapp.io/.well-known/$p")
+            [ "$code" = 200 ] || { echo "::error::$p returned $code"; exit 1; }
+            jq -e . "$RUNNER_TEMP/$p.json" > /dev/null || { echo "::error::$p is not JSON"; exit 1; }
+          done
+          jq -e '.authorization_endpoint and .token_endpoint and .registration_endpoint' "$RUNNER_TEMP/oauth-authorization-server.json" > /dev/null

@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Report a security vulnerability
+    url: mailto:support@skrapp.io?subject=Security%3A%20Skrapp%20MCP
+    about: Email us privately. Do not open a public issue for vulnerabilities.
+  - name: Skrapp help center
+    url: https://support.skrapp.io/hc/en-us
+    about: Account, billing and product questions.
