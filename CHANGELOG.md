@@ -1,42 +1,42 @@
 # Changelog
 
-All notable changes to the hosted Skrapp MCP server are recorded here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html). A release date is given where it is known.
+All notable changes to the hosted Skrapp MCP server are recorded here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 1.4.2
-
-### Fixed
-
-- Context tagging fix for per-client context.
-
-## 1.4.1
+## 1.4.2 - 2026-11-10
 
 ### Fixed
 
-- Context tagging fix for per-client context.
+- The per-client context is now carried into every tool handler, including bulk workers; before this, most upstream calls fell back to the plain `mcp` tag.
 
-## 1.4.0
+## 1.4.1 - 2026-11-10
+
+### Fixed
+
+- Codex requests are tagged `mcp-codex` instead of `mcp-chatgpt` (its User-Agent also contains `openai`).
+
+## 1.4.0 - 2026-11-10
 
 ### Added
 
-- Per-client context.
+- Every upstream call carries the calling assistant (`mcp-claude`, `mcp-chatgpt`, `mcp-codex`, ...) so usage can be attributed per client.
 
 ### Changed
 
 - OAuth refresh tokens now last 90 days.
 
-## 1.3.0
+## 1.3.0 - 2026-11-09
 
 ### Changed
 
 - `search_companies` is aligned with the Companies Search API.
 
-## 1.2.0
+## 1.2.0 - 2026-11-09
 
 ### Changed
 
 - Sign-in is now required on every request, including `initialize`.
 
-## 1.1.0
+## 1.1.0 - 2026-11-09
 
 ### Added
 
