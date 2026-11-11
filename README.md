@@ -27,12 +27,12 @@ Add Skrapp as a custom connector, paste `https://mcp.skrapp.io/` as the server U
 
 | Assistant | Where | Step-by-step |
 | --- | --- | --- |
-| Claude | Settings, Customize, Connectors, Add custom connector | <https://skrapp.io/mcp> |
-| ChatGPT | Plugins, Add, Add custom MCP server | <https://skrapp.io/mcp> |
-| Perplexity | Settings, Connectors, Add custom, Remote | <https://skrapp.io/mcp> |
-| Grok | Connectors, New Connector, Custom | <https://skrapp.io/mcp> |
-| Mistral (Le Chat) | Connectors, Add Connector, Custom MCP Connector | <https://skrapp.io/mcp> |
-| Microsoft Copilot | Copilot Studio, Tools, Model Context Protocol, OAuth 2.0 with dynamic discovery | <https://skrapp.io/mcp> |
+| Claude | Settings, Customize, Connectors, Add custom connector | <https://skrapp.io/mcp#connect-claude> |
+| ChatGPT | Plugins, Add, Add custom MCP server | <https://skrapp.io/mcp#connect-chatgpt> |
+| Perplexity | Settings, Connectors, Add custom, Remote | <https://skrapp.io/mcp#connect-perplexity> |
+| Grok | Connectors, New Connector, Custom | <https://skrapp.io/mcp#connect-grok> |
+| Mistral (Le Chat) | Connectors, Add Connector, Custom MCP Connector | <https://skrapp.io/mcp#connect-mistral> |
+| Microsoft Copilot | Copilot Studio, Tools, Model Context Protocol, OAuth 2.0 with dynamic discovery | <https://skrapp.io/mcp#connect-copilot> |
 
 ### Code tools
 
