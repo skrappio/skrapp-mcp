@@ -2,7 +2,7 @@
 
 ## Reporting a vulnerability
 
-Do not open a public issue, pull request or discussion for a security problem. Email <support@skrapp.io> with the subject "Security: Skrapp MCP" and include:
+Do not open a public issue, pull request or discussion for a security problem. Email <security@skrapp.io> with the subject "Security: Skrapp MCP" and include:
 
 - what you found and the impact you expect,
 - steps to reproduce, with the client, tool and approximate time (UTC),

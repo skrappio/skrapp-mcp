@@ -5,7 +5,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Do not post API keys, tokens or personal data. For security issues, email support@skrapp.io instead (see SECURITY.md).
+        Do not post API keys, tokens or personal data. For security issues, email security@skrapp.io instead (see SECURITY.md).
   - type: dropdown
     id: client
     attributes:
