@@ -48,6 +48,8 @@ Cursor, VS Code and Codex sign you in when they first load the server.
 
 ## Authentication
 
+Authentication is required on every request, `initialize` included; there is no anonymous mode. The registry manifest declares this under `_meta` in [`server.json`](server.json).
+
 **OAuth 2.1 (default).** Give the client only the server URL. It discovers the authorization server from `/.well-known/oauth-protected-resource`, registers itself (dynamic client registration, public client), and opens the Skrapp consent page; you approve once. It then holds a one-hour access token and a rotating refresh token (valid 90 days) bound to your account, using Authorization Code with PKCE (`S256`). Revoke access at any time from your Skrapp account or at `/oauth/revoke`.
 
 | Endpoint | URL |

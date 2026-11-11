@@ -14,5 +14,31 @@
       "type": "streamable-http",
       "url": "https://mcp.skrapp.io/"
     }
-  ]
+  ],
+  "_meta": {
+    "io.modelcontextprotocol.registry/publisher-provided": {
+      "authentication": {
+        "required": true,
+        "oauth_required": true,
+        "type": "oauth2",
+        "flow": "authorization_code_pkce",
+        "dynamic_client_registration": true,
+        "protected_resource_metadata": "https://mcp.skrapp.io/.well-known/oauth-protected-resource",
+        "authorization_server_metadata": "https://mcp.skrapp.io/.well-known/oauth-authorization-server",
+        "scopes": [
+          "mcp"
+        ],
+        "alternatives": [
+          {
+            "type": "api_key",
+            "header": "X-Access-Key",
+            "docs": "https://skrapp.io/api#mcp-api-key"
+          }
+        ],
+        "notes": "Every request, including initialize, needs a credential. Anonymous requests get 401 with a WWW-Authenticate resource_metadata pointer. The signed-in Skrapp account must hold an active API key."
+      },
+      "documentation": "https://skrapp.io/mcp",
+      "support": "support@skrapp.io"
+    }
+  }
 }
