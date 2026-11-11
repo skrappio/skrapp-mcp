@@ -33,3 +33,21 @@ jobs:
             jq -e . "$RUNNER_TEMP/$p.json" > /dev/null || { echo "::error::$p is not JSON"; exit 1; }
           done
           jq -e '.authorization_endpoint and .token_endpoint and .registration_endpoint' "$RUNNER_TEMP/oauth-authorization-server.json" > /dev/null
+
+      - name: Check out server.json and README
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Compare with https://skrapp.io/mcp.md
+        run: |
+          set -euo pipefail
+          curl -sSf --max-time 20 https://skrapp.io/mcp.md -o "$RUNNER_TEMP/mcp.md"
+          live=$(grep -oE 'server v[0-9]+\.[0-9]+\.[0-9]+' "$RUNNER_TEMP/mcp.md" | head -1 | sed 's/server v//')
+          ours=$(jq -r .version server.json)
+          echo "live docs: $live  server.json: $ours"
+          [ -n "$live" ] || { echo "::error::could not read the server version from mcp.md"; exit 1; }
+          [ "$live" = "$ours" ] || { echo "::error::server.json says $ours but the live server is $live; bump server.json, CHANGELOG.md and tag v$live"; exit 1; }
+          grep -E '^\| \[?[a-z_]+' "$RUNNER_TEMP/mcp.md" | sed -E 's/^\| \[?([a-z_]+).*/\1/' | sort > "$RUNNER_TEMP/live-tools.txt"
+          grep -E '^\| `[a-z_]+`' README.md | sed -E 's/^\| `([a-z_]+)`.*/\1/' | sort > "$RUNNER_TEMP/readme-tools.txt"
+          diff "$RUNNER_TEMP/live-tools.txt" "$RUNNER_TEMP/readme-tools.txt" || { echo "::error::README tool table differs from the live tool list (< live, > README)"; exit 1; }
+          echo "ok: v$ours, $(wc -l < "$RUNNER_TEMP/live-tools.txt") tools"

@@ -49,6 +49,13 @@ jobs:
           npx --yes -p ajv-cli@5.0.0 -p ajv-formats@3.0.1 ajv validate \
             --spec=draft7 --strict=false -c ajv-formats -s "$RUNNER_TEMP/server.schema.json" -d server.json
 
+      - name: server.json version matches the latest CHANGELOG entry
+        run: |
+          ours=$(jq -r .version server.json)
+          latest=$(grep -oE '^## \[?[0-9]+\.[0-9]+\.[0-9]+' CHANGELOG.md | head -1 | sed -E 's/^## \[?//')
+          echo "server.json $ours / CHANGELOG $latest"
+          [ "$ours" = "$latest" ] || { echo "::error::server.json ($ours) and CHANGELOG.md ($latest) disagree"; exit 1; }
+
       - name: JSON and TOML syntax
         run: |
           shopt -s dotglob
