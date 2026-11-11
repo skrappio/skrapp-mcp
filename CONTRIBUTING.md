@@ -8,6 +8,7 @@ This repository holds documentation, the MCP Registry manifest and examples for 
 2. Keep one topic per pull request, with a [Conventional Commits](https://www.conventionalcommits.org) title such as `docs: fix Cursor install link`.
 3. Use only environment variable placeholders (`$SKRAPP_API_KEY`) in examples. Never commit a real key or token.
 4. Record user-visible server changes in [CHANGELOG.md](CHANGELOG.md) only when they are released by Skrapp.
+5. Each released server version gets a matching `version` in `server.json`, a CHANGELOG entry and a git tag `vX.Y.Z` with a GitHub release; the weekly live check fails when `server.json` drifts from the version the live server reports.
 
 ## Run the checks locally
 
