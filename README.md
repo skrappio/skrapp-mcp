@@ -42,7 +42,7 @@ Add Skrapp as a custom connector, paste `https://mcp.skrapp.io/` as the server U
 | Cursor | [Add to Cursor](cursor://anysphere.cursor-deeplink/mcp/install?name=skrapp&config=eyJ1cmwiOiJodHRwczovL21jcC5za3JhcHAuaW8vIn0=), or [`examples/cursor.mcp.json`](examples/cursor.mcp.json) as `.cursor/mcp.json` |
 | VS Code | [Add to VS Code](https://insiders.vscode.dev/redirect/mcp/install?name=skrapp&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fmcp.skrapp.io%2F%22%7D), or [`examples/vscode.mcp.json`](examples/vscode.mcp.json) as `.vscode/mcp.json` |
 | Codex | `codex mcp add skrapp --url https://mcp.skrapp.io/`, then `codex mcp login skrapp`; or [`examples/codex.config.toml`](examples/codex.config.toml) in `~/.codex/config.toml` |
-| Claude Code (shared) | [`examples/.mcp.json`](examples/.mcp.json) at your project root |
+| Claude Code (shared) | This repo ships a root [`.mcp.json`](.mcp.json): clone it, or copy the file to your project root, and Claude Code offers the server on open |
 
 Cursor, VS Code and Codex sign you in when they first load the server.
 
