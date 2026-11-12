@@ -2,6 +2,17 @@
 
 All notable changes to the hosted Skrapp MCP server are recorded here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 1.5.0 - 2026-11-12
+
+### Added
+
+- Credit and rate-limit refusals end with a link to the Skrapp pricing page, in the text and as `structuredContent.upgrade_url`.
+
+### Changed
+
+- The daily search cap refusal is a structured `rate_limited` error with `limit`, `reset_at` (00:00 UTC) and `retryable: false`.
+- The server instructions ask the assistant to give the user `upgrade_url` as is.
+
 ## 1.4.2 - 2026-11-10
 
 ### Fixed

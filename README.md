@@ -112,7 +112,7 @@ Claude, Claude Code, Cursor and VS Code show prompts and resources; ChatGPT uses
 ## Safety model and limits
 
 - **Quote before spend.** Company enrichment, phone lookups, list saves that trigger finder lookups and every delete first return `status: "confirmation_required"` with the exact cost and a `confirmationToken`. They run only when called again with `confirm: true` and that token. Nothing is charged for a quote. Single email finds and verifications (1 credit each) run directly.
-- **Refusals are never charged.** Insufficient credits, rate limits, an expired trial or an unknown record come back as structured errors (`insufficient_credits`, `rate_limited` with `retry_after_seconds`, `trial_expired`, `not_found`) that say the call was not charged.
+- **Refusals are never charged.** Insufficient credits, rate limits, an expired trial or an unknown record come back as structured errors (`insufficient_credits`, `rate_limited` with `retry_after_seconds`, `trial_expired`, `not_found`) that say the call was not charged. Credit and rate-limit refusals also carry `upgrade_url`, a link to the Skrapp pricing page.
 - **Rate limits, per account.** 250 read calls per minute, 250 spend calls per minute (separate counter), 25 bulk calls per minute.
 - **You stay in control.** Disconnect the connector in your assistant, or revoke access from your Skrapp account. Access tokens expire within an hour.
 
