@@ -2,6 +2,19 @@
 
 All notable changes to the hosted Skrapp MCP server are recorded here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 1.6.0 - 2026-11-13
+
+### Changed
+
+- A credit-spending tool called with `confirm: true` but a missing or wrong `confirmationToken` returns the quote again with `reason: "mismatched"`, so the assistant knows its confirmation did not match and asks the user again.
+- Internal: the server also hosts the Skrapp in-app assistant. Its routes are not reachable on `https://mcp.skrapp.io/`, and the MCP tools are unchanged.
+
+## 1.5.4 - 2026-11-13
+
+### Changed
+
+- `search_companies`: an unknown industry is rejected with a 400 (`INVALID_FILTER_VALUE`) that names it, never dropped, and a legacy LinkedIn industry label spelled exactly (for example "Internet" or "Computer Software") is read as its current successor.
+
 ## 1.5.3 - 2026-11-13
 
 ### Changed
