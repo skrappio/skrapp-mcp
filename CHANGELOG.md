@@ -2,6 +2,24 @@
 
 All notable changes to the hosted Skrapp MCP server are recorded here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 1.5.3 - 2026-11-13
+
+### Changed
+
+- Internal: data gateway calls record which MCP tool made each query. No change to tool inputs or outputs.
+
+## 1.5.2 - 2026-11-12
+
+### Changed
+
+- Internal: data gateway calls are tagged for request analytics. No change to tool inputs or outputs.
+
+## 1.5.1 - 2026-11-12
+
+### Added
+
+- `get_list_leads` returns `resolvedLinkedinUrl`, the public LinkedIn profile when known, next to `linkedinUrl` as saved.
+
 ## 1.5.0 - 2026-11-12
 
 ### Added
